@@ -1,4 +1,4 @@
-module pulsify
+module github.com/DecodeWorms/pulsify
 
 go 1.20
 
