@@ -1,7 +1,7 @@
 package pulsar
 
 import (
-	"pulsify/config"
+	"github.com/DecodeWorms/pulsify/config"
 
 	"github.com/apache/pulsar-client-go/pulsar"
 )
