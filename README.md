@@ -1,2 +1,2 @@
 # pulsify
-It streams messages from the microservices
+This library implements Apache Pulsar messaging system , it allows microservices to stream in real-time .
