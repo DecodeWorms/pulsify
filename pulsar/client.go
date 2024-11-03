@@ -1,6 +1,8 @@
 package pulsar
 
 import (
+	"fmt"
+
 	"github.com/apache/pulsar-client-go/pulsar"
 )
 
@@ -9,19 +11,18 @@ type PulsarClient struct {
 }
 
 func NewPulsarClient(url string) (*PulsarClient, error) {
+	//Connecting to Pulsar Client
+	fmt.Println("Connecting to Pulsar client")
 	options := pulsar.ClientOptions{
 		URL: url,
 	}
-
-	/*if auth {
-		options.Authentication = pulsar.NewAuthenticationToken(token)
-	}
-	*/
 
 	client, err := pulsar.NewClient(options)
 	if err != nil {
 		return nil, err
 	}
+	//Connected to Pulsar client successfully
+	fmt.Println("Connected to Pulsar client successfully")
 
 	return &PulsarClient{client: client}, nil
 }
