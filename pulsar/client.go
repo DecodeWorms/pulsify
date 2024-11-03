@@ -1,8 +1,6 @@
 package pulsar
 
 import (
-	"github.com/DecodeWorms/pulsify/config"
-
 	"github.com/apache/pulsar-client-go/pulsar"
 )
 
@@ -10,13 +8,13 @@ type PulsarClient struct {
 	client pulsar.Client
 }
 
-func NewPulsarClient(config *config.Config) (*PulsarClient, error) {
+func NewPulsarClient(url, token string, auth bool) (*PulsarClient, error) {
 	options := pulsar.ClientOptions{
-		URL: config.Url,
+		URL: url,
 	}
 
-	if config.Authentication {
-		options.Authentication = pulsar.NewAuthenticationToken(config.Token)
+	if auth {
+		options.Authentication = pulsar.NewAuthenticationToken(token)
 	}
 
 	client, err := pulsar.NewClient(options)
