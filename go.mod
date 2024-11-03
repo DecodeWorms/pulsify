@@ -2,12 +2,15 @@ module github.com/DecodeWorms/pulsify
 
 go 1.20
 
+replace google.golang.org/genproto => google.golang.org/genproto v0.0.0-20231016165738-49dd2c1f3d0b
+
+require github.com/apache/pulsar-client-go v0.14.0
+
 require (
 	github.com/99designs/go-keychain v0.0.0-20191008050251-8e49817e8af4 // indirect
 	github.com/99designs/keyring v1.2.1 // indirect
 	github.com/AthenZ/athenz v1.10.39 // indirect
 	github.com/DataDog/zstd v1.5.0 // indirect
-	github.com/apache/pulsar-client-go v0.14.0 // indirect
 	github.com/ardielle/ardielle-go v1.5.2 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bits-and-blooms/bitset v1.4.0 // indirect
@@ -31,7 +34,7 @@ require (
 	github.com/pierrec/lz4 v2.0.5+incompatible // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/prometheus/client_golang v1.14.0 // indirect
-	github.com/prometheus/client_model v0.3.0 // indirect
+	github.com/prometheus/client_model v0.4.0 // indirect
 	github.com/prometheus/common v0.37.0 // indirect
 	github.com/prometheus/procfs v0.8.0 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect
