@@ -8,14 +8,15 @@ type PulsarClient struct {
 	client pulsar.Client
 }
 
-func NewPulsarClient(url, token string, auth bool) (*PulsarClient, error) {
+func NewPulsarClient(url string) (*PulsarClient, error) {
 	options := pulsar.ClientOptions{
 		URL: url,
 	}
 
-	if auth {
+	/*if auth {
 		options.Authentication = pulsar.NewAuthenticationToken(token)
 	}
+	*/
 
 	client, err := pulsar.NewClient(options)
 	if err != nil {
