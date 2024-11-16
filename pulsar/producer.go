@@ -2,8 +2,10 @@ package pulsar
 
 import (
 	"context"
+	"encoding/json"
 	"log"
 
+	"github.com/DecodeWorms/pulsify/model"
 	"github.com/apache/pulsar-client-go/pulsar"
 )
 
@@ -22,11 +24,17 @@ func (pc *PulsarClient) CreateProducer(topic string) (*Producer, error) {
 	return &Producer{producer: producer}, nil
 }
 
-func (p *Producer) SendMessage(msg string) error {
+func (p *Producer) SendMessage(msg model.VerifyEmail) error {
 	var ctx = context.Background()
 
-	_, err := p.producer.Send(ctx, &pulsar.ProducerMessage{
-		Payload: []byte(msg),
+	//Marshal the msg to json
+	m, err := json.Marshal(msg)
+	if err != nil {
+		return err
+	}
+
+	_, err = p.producer.Send(ctx, &pulsar.ProducerMessage{
+		Payload: m,
 	})
 	if err != nil {
 		log.Printf("Failed to send message: %v", err)
