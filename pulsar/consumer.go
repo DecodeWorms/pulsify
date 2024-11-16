@@ -24,17 +24,24 @@ func (pc *PulsarClient) CreateConsumer(topic, subscription string) (*Consumer, e
 	return &Consumer{consumer: consumer}, nil
 }
 
-func (c *Consumer) ReceiveMessage() {
-	for {
-		msg, err := c.consumer.Receive(context.Background())
-		if err != nil {
-			log.Printf("Failed to receive message: %v", err)
-			continue
-		}
-
-		log.Printf("Received message: %s", string(msg.Payload()))
-		c.consumer.Ack(msg)
+func (c *Consumer) ReceiveMessage() (interface{}, error) {
+	// Retrieve the most recent message from Pulsar
+	msg, err := c.consumer.Receive(context.Background())
+	if err != nil {
+		log.Printf("Failed to receive message: %v", err)
+		return "", err
 	}
+
+	// Process the message
+	payload := string(msg.Payload())
+	log.Printf("Received message: %s", payload)
+
+	// Acknowledge the message
+	c.consumer.Ack(msg)
+
+	// Return the payload of the last message received
+	return payload, nil
+
 }
 
 func (c *Consumer) Close() {
