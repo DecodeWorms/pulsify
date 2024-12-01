@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/DecodeWorms/pulsify/model"
 	"github.com/apache/pulsar-client-go/pulsar"
 )
 
@@ -24,7 +23,7 @@ func (pc *PulsarClient) CreateProducer(topic string) (*Producer, error) {
 	return &Producer{producer: producer}, nil
 }
 
-func (p *Producer) SendMessage(msg model.VerifyEmail) error {
+func (p *Producer) SendMessage(msg any) error {
 	var ctx = context.Background()
 
 	//Marshal the msg to json
